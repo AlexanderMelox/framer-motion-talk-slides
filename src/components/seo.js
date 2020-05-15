@@ -17,7 +17,7 @@ function SEO() {
     `
   )
 
-  const { title, description, author } = site
+  const { title, description, author } = site.siteMetadata
 
   return (
     <Helmet>

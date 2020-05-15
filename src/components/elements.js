@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
 
 export const Container = styled.div`
   display: grid;
@@ -70,6 +71,7 @@ export const Link = styled.a`
 
 export const Window = styled.div`
   background: var(--primary);
+  position: relative;
 
   height: 472px;
   display: flex;
@@ -85,6 +87,22 @@ export const Window = styled.div`
     border-radius: 35px;
     cursor: pointer;
   }
+`
+
+export const Reset = styled(motion.span)`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 38px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--radius);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 1px 7px 0px;
 `
 
 export const GiveMeSomeSpace = styled.div`
