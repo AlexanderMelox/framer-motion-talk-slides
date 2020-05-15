@@ -1,0 +1,92 @@
+import styled from '@emotion/styled'
+
+export const Container = styled.div`
+  display: grid;
+  grid-template-columns: minmax(8vw, 1fr) minmax(0, 45rem) minmax(8vw, 1fr);
+
+  > * {
+    grid-column: 2 / 3;
+  }
+`
+
+export const Header = styled.header`
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  color: #fff;
+  background: var(--ui-bg);
+
+  h1 {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  ul {
+  }
+
+  p {
+    font-weight: 300;
+  }
+`
+
+const Button = styled.button`
+  border-radius: var(--radius);
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 250px;
+  cursor: pointer;
+  border: none;
+`
+
+export const PrimaryBtn = styled(Button)`
+  background: var(--primary);
+  color: var(--text-01);
+`
+
+export const Link = styled.a`
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 3px;
+  border-bottom: 2px solid var(--primary);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  transition: all 0.3s;
+
+  &:link,
+  &:visited {
+    color: var(--text-01);
+    opacity: 0.8;
+  }
+
+  &:hover,
+  &:active {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+`
+
+export const Window = styled.div`
+  background: var(--primary);
+
+  height: 472px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
+
+  div {
+    width: 150px;
+    height: 150px;
+    background: white;
+    border-radius: 35px;
+    cursor: pointer;
+  }
+`
+
+export const GiveMeSomeSpace = styled.div`
+  height: 4rem;
+`
