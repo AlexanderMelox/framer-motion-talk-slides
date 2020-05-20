@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
+// We
 export const One = () => {
   return (
     <motion.div
