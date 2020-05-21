@@ -1,12 +1,37 @@
 import React from 'react'
+import { StyledPreview, LiveContainer } from './elements'
+import { LiveProvider, LiveEditor, LiveError } from 'react-live'
+import { css } from '@emotion/core'
 import { motion } from 'framer-motion'
+
+import theme from 'prism-react-renderer/themes/vsDark'
+
+const scope = { motion }
+
+const prodviderProps = {
+  scope,
+  theme,
+}
+
+const editorProps = {
+  padding: 32,
+  style: {
+    fontSize: '16px',
+    fontFamily: '"Dank Mono", monospace',
+    borderTopLeftRadius: 'var(--radius)',
+  },
+}
 
 export const One = () => {
   return (
-    <motion.div
-      initial={{ scale: 0, rotate: 0 }}
-      animate={{ scale: 2, rotate: 90 }}
-      transition={{ duration: 0.6 }}
-    />
+    <LiveProvider code="<div>Hello World!</div>" {...prodviderProps}>
+      <LiveContainer>
+        <LiveEditor {...editorProps} />
+        <div>
+          <LiveError />
+          <StyledPreview />
+        </div>
+      </LiveContainer>
+    </LiveProvider>
   )
 }

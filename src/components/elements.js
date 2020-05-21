@@ -1,9 +1,10 @@
 import styled from '@emotion/styled'
+import { LivePreview } from 'react-live'
 import { motion } from 'framer-motion'
 
 export const Container = styled.div`
   display: grid;
-  grid-template-columns: minmax(8vw, 1fr) minmax(0, 45rem) minmax(8vw, 1fr);
+  grid-template-columns: minmax(4vw, 1fr) minmax(0, 60rem) minmax(4vw, 1fr);
 
   > * {
     grid-column: 2 / 3;
@@ -20,9 +21,6 @@ export const Header = styled.header`
   h1 {
     margin: 0;
     font-weight: 700;
-  }
-
-  ul {
   }
 
   p {
@@ -107,4 +105,20 @@ export const Reset = styled(motion.span)`
 
 export const GiveMeSomeSpace = styled.div`
   height: 4rem;
+`
+
+export const LiveContainer = styled.div`
+  display: flex;
+  align-items: stretch;
+  min-height: 400px;
+
+  > * {
+    flex: 1 1 50%;
+  }
+`
+
+export const StyledPreview = styled(LivePreview)`
+  background: #fff;
+  color: #333;
+  height: 100%;
 `

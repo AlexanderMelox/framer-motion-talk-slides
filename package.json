@@ -10,8 +10,8 @@
     "@mdx-js/react": "^1.6.1",
     "framer-motion": "^1.11.0",
     "gatsby": "^2.21.22",
-    "gatsby-plugin-emotion": "^4.3.1",
-    "gatsby-plugin-mdx": "^1.2.7",
+    "gatsby-plugin-emotion": "^4.3.2",
+    "gatsby-plugin-mdx": "^1.2.11",
     "gatsby-plugin-react-helmet": "^3.3.1",
     "gatsby-source-filesystem": "^2.3.1",
     "polished": "^3.6.3",
@@ -19,7 +19,8 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
-    "react-highlight.js": "^1.0.7"
+    "react-highlight.js": "^1.0.7",
+    "react-live": "^2.2.2"
   },
   "devDependencies": {
     "prettier": "2.0.5"
