@@ -3,8 +3,8 @@ import { Button, ClickableTile } from 'carbon-components-react'
 import { motion } from 'framer-motion'
 import { durations, productive } from '../../utils/animationHelpers'
 
-// import 'carbon-components/css/carbon-components.min.css'
-// import '../../styles/examples.css'
+import 'carbon-components/css/carbon-components.min.css'
+import '../../styles/examples.css'
 
 const Example = () => {
   const [open, setOpen] = useState(false)
@@ -15,7 +15,7 @@ const Example = () => {
   const entranceTransition = useMemo(
     () => ({
       duration: durations.moderate1,
-      ease: productive.entrance,
+      ease: 'linear',
     }),
     []
   )
@@ -23,7 +23,7 @@ const Example = () => {
   const exitTransition = useMemo(
     () => ({
       duration: durations.fast2,
-      ease: productive.exit,
+      ease: 'linear',
     }),
     []
   )
@@ -35,22 +35,19 @@ const Example = () => {
         <motion.div
           variants={{
             show: {
-              width: '45vw',
-              opacity: 1,
+              flexBasis: '45vw',
               transition: entranceTransition,
             },
             hide: {
-              width: 0,
-              opacity: 0,
+              flexBasis: 0,
               transition: exitTransition,
             },
           }}
-          style={{ overflow: 'hidden' }}
           initial={false}
           animate={open ? 'hide' : 'show'}
           className="splash-panel"
         >
-          <div style={{ padding: '100px 60px' }}>
+          <div className="splash-content">
             <h1>Framer motion, in motion 🚀</h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
@@ -70,8 +67,8 @@ const Example = () => {
             </p>
           </div>
         </motion.div>
-        <motion.div className="layout-container">
-          <motion.div transition={{ staggerChildren: 0.2 }} className="cards">
+        <div animate className="layout-container">
+          <div className="cards" style={{ backgroundColor: 'white' }}>
             {[...new Array(18).fill(null)].map(() => (
               <ClickableTile handleClick={openSidebar} className="card">
                 <div className="card__icon"></div>
@@ -79,21 +76,17 @@ const Example = () => {
                 <h3 className="card__title"></h3>
               </ClickableTile>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
         <motion.aside
           variants={{
             show: {
-              width: '45vw',
+              flexBasis: '45vw',
               transition: entranceTransition,
-              overflow: 'auto',
-              transition: { delayChildren: 0.3 },
             },
             hide: {
-              width: 0,
+              flexBasis: '0vw',
               transition: exitTransition,
-              overflow: 'hidden',
-              transition: { delayChildren: 0.3 },
             },
           }}
           initial={false}
@@ -102,8 +95,8 @@ const Example = () => {
         >
           <motion.div
             variants={{
-              show: { height: 400 },
-              hide: { height: 100 },
+              show: { height: 400, transition: { delay: 0.3 } },
+              hide: { height: 100, transition: { delay: 0.3 } },
             }}
             className="top"
           >
@@ -111,7 +104,7 @@ const Example = () => {
           </motion.div>
           <motion.div
             variants={{
-              show: { opacity: 1, transition: { delay: 0.5 } },
+              show: { opacity: 1, transition: { delay: 0.6 } },
               hide: { opacity: 0 },
             }}
             className="bottom"
