@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Global, css } from '@emotion/core'
 import { normalize } from 'polished'
-import { Header, Container, Link } from './elements'
+import { motion, useViewportScroll, useTransform } from 'framer-motion'
+import { Header, Container, Link, ProgressBar } from './elements'
 import Footer from './footer'
 import SEO from './seo'
 
@@ -72,22 +73,61 @@ const globalStyles = css`
     font-size: 1.25rem;
     font-weight: 300;
     line-height: 1.6;
+    margin-top: 0;
+  }
+
+  p code {
+    display: inline-block;
+    padding: 2px 0.6rem !important;
+    border: none;
+    font-size: 1.25rem;
+    box-shadow: none;
+  }
+
+  li {
+    font-size: 1.25rem;
+    padding: 0.5rem 0;
+  }
+
+  .npm__react-simple-code-editor__textarea:focus {
+    border: none;
+    outline: none;
   }
 `
 
 const Layout = ({ children }) => {
+  const { scrollYProgress, scrollY } = useViewportScroll()
+  const width = useTransform(scrollYProgress, [0, 1], ['0px', '100%'])
+
   return (
     <>
       <SEO />
       <Global styles={globalStyles} />
-      <Header>
+      <ProgressBar style={{ width }} />
+      <Header
+        style={{ opacity: scrollY > 1 ? 0 : 0 }}
+        initial={{ opacity: 0, y: '-100%' }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <Container>
-          <h1>🚄 Framer motion</h1>
+          <motion.h1
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            whileHover={{ x: '100%' }}
+          >
+            🚄 Framer motion
+          </motion.h1>
         </Container>
       </Header>
-      <Container>
-        <div>{children}</div>
-      </Container>
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, delay: 0.7 }}
+      >
+        <Container>{children}</Container>
+      </motion.div>
       <Footer>
         <p> Made with ❤️ with GatsbyJS</p>
         <span>

@@ -1,7 +1,11 @@
 import Highlight from 'react-highlight.js'
 import { Link, GiveMeSomeSpace } from '../components/elements.js'
 import Demo from '../components/Demo.js'
-import { One } from '../components/examples.js'
+import {
+  InitialAndAnimate,
+  Variants,
+  HoverAndTap,
+} from '../components/examples.js'
 
 ## 🤔 What is Framer motion?
 
@@ -13,9 +17,11 @@ Design fluid animations for the web, across desktop and mobile.
 It's an amazing react animation library that allows you to easily
 add animations to your site all through Javascript. It's also really fast using your GPU to achieve 60 FPS animations.
 
-<Link href="https://www.framer.com/motion/">
-  🔗Check out their site, its pretty...cool 🧊
-</Link>
+<div>
+  <Link href="https://www.framer.com/motion/">
+    🔗Check out their site, its pretty...cool 🧊
+  </Link>
+</div>
 
 <GiveMeSomeSpace />
 
@@ -34,6 +40,35 @@ ${`
 
 ## 🏃🏼‍♀️Let's animate an element!
 
-To start animating, we just have to convert an HTML element, into a motion.elementName
+To start animating, we just have to convert an HTML element, into a `<motion.element />`.
 
-<One />
+Then you can set an **initial** prop and an **animate** prop to get started!
+
+It's super easy, here are some examples of what you can animate:
+
+<ul>
+  <li>opacity</li>
+  <li>scale</li>
+  <li>skew</li>
+  <li>rotate</li>
+  <li>x</li>
+  <li>y</li>
+</ul>
+
+We can also control the duration and delay with a **transition** prop.
+
+<InitialAndAnimate />
+
+## You can also do these on hover and tap! 👆🏼
+
+<HoverAndTap />
+
+## Framer motion uses these things called variants
+
+**Variants** allow you to define animation states and organize them by name.
+
+They allow us to control animations throughout a component tree by switching a single **animate** prop.
+
+This is great for **orchestration**!
+
+<Variants />
