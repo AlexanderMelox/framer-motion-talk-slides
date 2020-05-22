@@ -7,6 +7,14 @@ import Footer from './footer'
 import SEO from './seo'
 
 const globalStyles = css`
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   ${normalize()};
 
   @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap');

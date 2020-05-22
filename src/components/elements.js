@@ -149,6 +149,16 @@ export const StyledPreview = styled(LivePreview)`
   justify-content: center;
   align-items: center;
 
+  .drag-container {
+    width: 80%;
+    height: 150px;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px;
+  }
+
   div,
   ul {
     width: 150px;

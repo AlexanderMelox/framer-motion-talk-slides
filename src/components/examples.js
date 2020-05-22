@@ -133,9 +133,15 @@ export const Drag = () => {
 
   const code = `
 () => {
+  const contraintsRef = React.useRef(null);
+
   return (
-    <div className="container"
-      <motion.div />
+    <div ref={contraintsRef} className="drag-container">
+      <motion.div 
+        drag="x" 
+        dragConstraints={contraintsRef}
+        dragElastic={0.1} 
+      />
     </div>
   )
 }
