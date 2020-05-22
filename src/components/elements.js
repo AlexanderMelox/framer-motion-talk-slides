@@ -36,7 +36,7 @@ export const Header = styled(motion.header)`
 `
 
 export const ProgressBar = styled(motion.div)`
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: lightgreen;
   position: fixed;
   top: 0;
   height: 20px;

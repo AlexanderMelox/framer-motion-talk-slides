@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Global, css } from '@emotion/core'
 import { normalize } from 'polished'
 import { motion, useViewportScroll, useTransform } from 'framer-motion'
@@ -55,6 +55,7 @@ const globalStyles = css`
     box-shadow: var(--box-shadow);
     border-left: 5px solid var(--primary);
     background: var(--ui-bg) !important;
+    margin-bottom: 1rem;
   }
 
   h1,
@@ -82,6 +83,7 @@ const globalStyles = css`
     font-weight: 300;
     line-height: 1.6;
     margin-top: 0;
+    margin-bottom: 1rem;
   }
 
   p code {
@@ -92,9 +94,20 @@ const globalStyles = css`
     box-shadow: none;
   }
 
+  ul {
+    padding-left: 2rem;
+    list-style: none;
+  }
+
   li {
     font-size: 1.25rem;
     padding: 0.5rem 0;
+
+    span[role='img'] {
+      color: #fff;
+      opacity: 1;
+      margin-right: 0.5rem;
+    }
   }
 
   .npm__react-simple-code-editor__textarea:focus {
@@ -125,7 +138,7 @@ const Layout = ({ children }) => {
             transition={{ duration: 1, delay: 0.3 }}
             whileHover={{ x: '100%' }}
           >
-            🚄 Framer motion
+            <span role="img">🚄</span> Framer motion
           </motion.h1>
         </Container>
       </Header>
@@ -137,7 +150,9 @@ const Layout = ({ children }) => {
         <Container>{children}</Container>
       </motion.div>
       <Footer>
-        <p> Made with ❤️ with GatsbyJS</p>
+        <p>
+          Made with <span role="img">❤️</span> with GatsbyJS
+        </p>
         <span>
           Developed by{' '}
           <Link href="https://alexandermelox.netlify.com">Alexander Melo</Link>

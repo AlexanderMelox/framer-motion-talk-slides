@@ -1,6 +1,5 @@
 import Highlight from 'react-highlight.js'
 import { Link, GiveMeSomeSpace } from '../components/elements.js'
-import Demo from '../components/Demo.js'
 import {
   InitialAndAnimate,
   Variants,
@@ -28,7 +27,7 @@ add animations to your site all through Javascript. It's also really fast using 
 
 ## 🚀Installation
 
-<Highlight language="shell">npm i framer-motion</Highlight>
+<Highlight language="shell">$ npm i framer-motion --save</Highlight>
 
 <Highlight language="js">{`
 import {motion} from 'framer-motion';
@@ -48,12 +47,24 @@ Then you can set an **initial** prop and an **animate** prop to get started!
 It's super easy, here are some examples of what you can animate:
 
 <ul>
-  <li>opacity</li>
-  <li>scale</li>
-  <li>skew</li>
-  <li>rotate</li>
-  <li>x</li>
-  <li>y</li>
+  <li>
+    <span role="img">✅</span>opacity
+  </li>
+  <li>
+    <span role="img">✅</span>scale
+  </li>
+  <li>
+    <span role="img">✅</span>skew
+  </li>
+  <li>
+    <span role="img">✅</span>rotate
+  </li>
+  <li>
+    <span role="img">✅</span>x
+  </li>
+  <li>
+    <span role="img">✅</span>y
+  </li>
 </ul>
 
 We can also control the duration and delay with a **transition** prop.
@@ -74,8 +85,12 @@ This is great for **orchestration**!
 
 <Variants />
 
-## Drag, is no longer a drag.
+## Drag, is no longer a drag
 
 To make a component draggable, you just add a **drag** prop and what axis you want it to drag on.
+
+If you don't want the element to be yeeted off the page, you can add the **dragContraints** prop.
+
+If you want the **dragContraints** to be the size of the parent's, you can pass it the <br /> parents `dragContraints={parentRef}`.
 
 <Drag />
