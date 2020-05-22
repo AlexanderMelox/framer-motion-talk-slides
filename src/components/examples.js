@@ -26,6 +26,7 @@ const editorProps = {
 }
 
 export const InitialAndAnimate = () => {
+  const [ResetButton, state] = useReset()
   const code = `
 <motion.div
   initial={{ opacity: 0, scale: 0 }}
@@ -38,7 +39,9 @@ export const InitialAndAnimate = () => {
       <LiveContainer>
         <LiveEditor {...editorProps} />
         <div>
-          <StyledPreview />
+          <ResetButton />
+          {state && <StyledPreview />}
+          {!state && <StyledPreview />}
         </div>
       </LiveContainer>
     </LiveProvider>
@@ -46,6 +49,8 @@ export const InitialAndAnimate = () => {
 }
 
 export const HoverAndTap = () => {
+  const [ResetButton, state] = useReset()
+
   const code = `
 <motion.div 
   initial={{ opacity: 0 }}
@@ -60,7 +65,9 @@ export const HoverAndTap = () => {
       <LiveContainer>
         <LiveEditor {...editorProps} />
         <div>
-          <StyledPreview />
+          <ResetButton />
+          {state && <StyledPreview />}
+          {!state && <StyledPreview />}
         </div>
       </LiveContainer>
     </LiveProvider>
@@ -114,6 +121,34 @@ export const Variants = () => {
           <ResetButton />
           {state && <StyledPreview transparent={true} />}
           {!state && <StyledPreview transparent={true} />}
+        </div>
+      </LiveContainer>
+      <LiveError />
+    </LiveProvider>
+  )
+}
+
+export const Drag = () => {
+  const [ResetButton, state] = useReset()
+
+  const code = `
+() => {
+  return (
+    <div className="container"
+      <motion.div />
+    </div>
+  )
+}
+  `
+
+  return (
+    <LiveProvider code={code} {...providerProps}>
+      <LiveContainer>
+        <LiveEditor {...editorProps} />
+        <div>
+          <ResetButton />
+          {state && <StyledPreview />}
+          {!state && <StyledPreview />}
         </div>
       </LiveContainer>
       <LiveError />
