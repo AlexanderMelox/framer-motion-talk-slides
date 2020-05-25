@@ -5,6 +5,8 @@ import {
   Variants,
   HoverAndTap,
   Drag,
+  Scroll,
+  Modal,
 } from '../components/examples.js'
 
 ## 🤔 What is Framer motion?
@@ -94,3 +96,15 @@ If you don't want the element to be yeeted off the page, you can add the **dragC
 If you want the **dragContraints** to be the size of the parent's, you can pass it the <br /> parents `dragContraints={parentRef}`.
 
 <Drag />
+
+# Scroll
+
+You can create scroll animations with the `useViewportScroll` hook framer motion provides. You can create effects like parallax or progress bars!
+
+<Scroll />
+
+# Let's put it all together!
+
+Let's make a modal with everything we have learned.
+
+<Modal />

@@ -1,6 +1,6 @@
-import styled from '@emotion/styled'
-import { LivePreview } from 'react-live'
-import { motion } from 'framer-motion'
+import styled from "@emotion/styled";
+import { LivePreview } from "react-live";
+import { motion } from "framer-motion";
 
 export const Container = styled.div`
   display: grid;
@@ -12,7 +12,7 @@ export const Container = styled.div`
   > * {
     grid-column: 3 / 4;
   }
-`
+`;
 
 export const Header = styled(motion.header)`
   position: relative;
@@ -33,15 +33,16 @@ export const Header = styled(motion.header)`
   p {
     font-weight: 300;
   }
-`
+`;
 
-export const ProgressBar = styled(motion.div)`
+export const ProgressBar = styled(motion.span)`
   background-color: lightgreen;
   position: fixed;
   top: 0;
+  left: 0;
   height: 20px;
   z-index: 50;
-`
+`;
 
 const Button = styled.button`
   border-radius: var(--radius);
@@ -52,12 +53,12 @@ const Button = styled.button`
   min-width: 250px;
   cursor: pointer;
   border: none;
-`
+`;
 
 export const PrimaryBtn = styled(Button)`
   background: var(--primary);
   color: var(--text-01);
-`
+`;
 
 export const Link = styled.a`
   text-decoration: none;
@@ -80,7 +81,7 @@ export const Link = styled.a`
     opacity: 1;
     transform: translateY(-3px);
   }
-`
+`;
 
 export const Window = styled.div`
   background: var(--primary);
@@ -100,7 +101,7 @@ export const Window = styled.div`
     border-radius: 35px;
     cursor: pointer;
   }
-`
+`;
 
 export const Reset = styled(motion.span)`
   position: absolute;
@@ -116,11 +117,11 @@ export const Reset = styled(motion.span)`
   justify-content: center;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.04) 0px 1px 7px 0px;
-`
+`;
 
 export const GiveMeSomeSpace = styled.div`
   height: 4rem;
-`
+`;
 
 export const LiveContainer = styled(motion.div)`
   position: relative;
@@ -136,7 +137,7 @@ export const LiveContainer = styled(motion.div)`
   > * {
     flex: 1 1 50%;
   }
-`
+`;
 
 export const StyledPreview = styled(LivePreview)`
   box-sizing: border-box;
@@ -159,6 +160,10 @@ export const StyledPreview = styled(LivePreview)`
     padding: 0px;
   }
 
+  .scroll-container {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
   div,
   ul {
     width: 150px;
@@ -166,11 +171,12 @@ export const StyledPreview = styled(LivePreview)`
     border-radius: calc(30px * 1.2);
     padding: 12px;
     background-color: ${({ transparent }) =>
-      transparent ? 'rgba(255, 255, 255, 0.5)' : 'rgba(255, 255, 255, 1)'};
+  transparent ? "rgba(255, 255, 255, 0.5)" : "rgba(255, 255, 255, 1)"};
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 
   ul {
@@ -192,4 +198,34 @@ export const StyledPreview = styled(LivePreview)`
       padding: 0;
     }
   }
-`
+
+  /* Modal section */
+  .modal {
+    background: white;
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    color: black;
+
+    span {
+      position: absolute;
+      top: 2rem;
+      right: 3rem;
+      font-size: 3rem;
+      cursor: pointer;
+    }
+  }
+
+  .backdrop {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0, .5);
+  }
+`;

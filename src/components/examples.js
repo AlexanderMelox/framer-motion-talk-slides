@@ -1,38 +1,51 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { motion } from 'framer-motion'
-import { StyledPreview, LiveContainer } from './elements'
-import { LiveProvider, LiveEditor, LiveError } from 'react-live'
+import React from "react";
+import styled from "@emotion/styled";
+import {
+  motion,
+  useTransform,
+  useViewportScroll,
+  AnimatePresence,
+} from "framer-motion";
+import { StyledPreview, LiveContainer, ProgressBar } from "./elements";
+import { LiveProvider, LiveEditor, LiveError } from "react-live";
 
-import useReset from '../hooks/useReset'
+import useReset from "../hooks/useReset";
 
-import theme from 'prism-react-renderer/themes/vsDark'
+import theme from "prism-react-renderer/themes/vsDark";
 
-const scope = { motion, styled }
+const scope = {
+  motion,
+  styled,
+  ProgressBar,
+  useTransform,
+  useViewportScroll,
+  AnimatePresence,
+};
 
 const providerProps = {
   scope,
   theme,
-}
+};
 
 const editorProps = {
   padding: 32,
   style: {
-    fontSize: '16px',
+    fontSize: "16px",
     fontFamily: '"Dank Mono", monospace',
-    borderTopLeftRadius: 'var(--radius)',
+    borderTopLeftRadius: "var(--radius)",
     lineHeight: 1.7,
+    width: "100%",
   },
-}
+};
 
 export const InitialAndAnimate = () => {
-  const [ResetButton, state] = useReset()
+  const [ResetButton, state] = useReset();
   const code = `
 <motion.div
   initial={{ opacity: 0, scale: 0 }}
   animate={{ opacity: 1, scale: 1 }}
 />
-`
+`;
 
   return (
     <LiveProvider code={code} {...providerProps}>
@@ -45,11 +58,11 @@ export const InitialAndAnimate = () => {
         </div>
       </LiveContainer>
     </LiveProvider>
-  )
-}
+  );
+};
 
 export const HoverAndTap = () => {
-  const [ResetButton, state] = useReset()
+  const [ResetButton, state] = useReset();
 
   const code = `
 <motion.div 
@@ -58,7 +71,7 @@ export const HoverAndTap = () => {
   whileHover={{ rotate: 90, scale: 1.1 }} 
   whileTap={{ borderRadius: '100%' }}
   transition={{ duration: .5 }}
-/>`
+/>`;
 
   return (
     <LiveProvider code={code} {...providerProps}>
@@ -71,11 +84,11 @@ export const HoverAndTap = () => {
         </div>
       </LiveContainer>
     </LiveProvider>
-  )
-}
+  );
+};
 
 export const Variants = () => {
-  const [ResetButton, state] = useReset()
+  const [ResetButton, state] = useReset();
 
   const code = `
 () => {
@@ -111,7 +124,7 @@ export const Variants = () => {
     </motion.ul>
   )
 }
-  `
+  `;
 
   return (
     <LiveProvider code={code} {...providerProps}>
@@ -125,11 +138,11 @@ export const Variants = () => {
       </LiveContainer>
       <LiveError />
     </LiveProvider>
-  )
-}
+  );
+};
 
 export const Drag = () => {
-  const [ResetButton, state] = useReset()
+  const [ResetButton, state] = useReset();
 
   const code = `
 () => {
@@ -145,7 +158,7 @@ export const Drag = () => {
     </div>
   )
 }
-  `
+  `;
 
   return (
     <LiveProvider code={code} {...providerProps}>
@@ -159,5 +172,90 @@ export const Drag = () => {
       </LiveContainer>
       <LiveError />
     </LiveProvider>
+  );
+};
+
+export const Scroll = () => {
+  const [ResetButton, state] = useReset();
+
+  const code = `
+() => {
+  const { scrollYProgress, scrollY } = useViewportScroll();
+  const width = useTransform(
+    scrollYProgress, 
+    [0, 1], 
+    ["0px", "100%"]
+  );
+
+  return (
+    <>
+      <ProgressBar 
+        style={{ width }} 
+      />
+    </>
   )
 }
+  `;
+
+  return (
+    <LiveProvider code={code} {...providerProps}>
+      <LiveContainer>
+        <LiveEditor {...editorProps} />
+        <StyledPreview style={{ width: 0, padding: 0, flex: "0 0 0" }} />
+      </LiveContainer>
+      <LiveError />
+    </LiveProvider>
+  );
+};
+
+export const Modal = () => {
+  const [ResetButton, state] = useReset();
+
+  const code = `
+() => {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <>
+      <motion.div onClick={() => setOpen(true)} />
+      <AnimatePresence>
+        {open && (
+          <>
+            <motion.div 
+              className="backdrop" 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div 
+                className="modal"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{ delay: .3 }}
+              >
+                <span onClick={() => setOpen(false)}>&times;</span>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+  )
+}
+  `;
+
+  return (
+    <LiveProvider code={code} {...providerProps}>
+      <LiveContainer>
+        <LiveEditor {...editorProps} />
+        <div>
+          <ResetButton />
+          {state && <StyledPreview />}
+          {!state && <StyledPreview />}
+        </div>
+      </LiveContainer>
+      <LiveError />
+    </LiveProvider>
+  );
+};
