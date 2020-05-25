@@ -41,10 +41,7 @@ const editorProps = {
 export const InitialAndAnimate = () => {
   const [ResetButton, state] = useReset();
   const code = `
-<motion.div
-  initial={{ opacity: 0, scale: 0 }}
-  animate={{ opacity: 1, scale: 1 }}
-/>
+<div />
 `;
 
   return (
@@ -66,11 +63,8 @@ export const HoverAndTap = () => {
 
   const code = `
 <motion.div 
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  whileHover={{ rotate: 90, scale: 1.1 }} 
-  whileTap={{ borderRadius: '100%' }}
-  transition={{ duration: .5 }}
+  initial={{  }}
+  animate={{  }}
 />`;
 
   return (
@@ -92,33 +86,17 @@ export const Variants = () => {
 
   const code = `
 () => {
-  const container = {
-    hidden: { opacity: 1, scale: 0 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        when: 'beforeChildren',
-        staggerChildren: 0.1,
-      },
-    },
-  }
+  // Declare our variants
 
-  const item = { 
-    hidden: { y: 20, opacity: 0 }, 
-    visible: { y: 0, opacity: 1  } 
-  }
 
   return (
     <motion.ul
-      variants={container}
-      initial="hidden"
-      animate="visible"
+      initial={}
+      animate={}
     >
       {[1, 2, 3, 4].map(index => (
         <motion.li
           key={index}
-          variants={item}
         />
       ))}
     </motion.ul>
@@ -146,14 +124,10 @@ export const Drag = () => {
 
   const code = `
 () => {
-  const contraintsRef = React.useRef(null);
-
   return (
-    <div ref={contraintsRef} className="drag-container">
+    <div className="drag-container">
       <motion.div 
-        drag="x" 
-        dragConstraints={contraintsRef}
-        dragElastic={0.1} 
+
       />
     </div>
   )
@@ -180,17 +154,11 @@ export const Scroll = () => {
 
   const code = `
 () => {
-  const { scrollYProgress, scrollY } = useViewportScroll();
-  const width = useTransform(
-    scrollYProgress, 
-    [0, 1], 
-    ["0px", "100%"]
-  );
 
   return (
     <>
       <ProgressBar 
-        style={{ width }} 
+        
       />
     </>
   )
@@ -218,28 +186,26 @@ export const Modal = () => {
   return (
     <>
       <motion.div onClick={() => setOpen(true)} />
-      <AnimatePresence>
         {open && (
           <>
             <motion.div 
               className="backdrop" 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{  }} 
+              animate={{ }}
+              exit={{  }}
             >
               <motion.div 
                 className="modal"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
-                transition={{ delay: .3 }}
+                initial={{  }}
+                animate={{ }}
+                exit={{  }}
+                transition={{ }}
               >
                 <span onClick={() => setOpen(false)}>&times;</span>
               </motion.div>
             </motion.div>
           </>
         )}
-      </AnimatePresence>
     </>
   )
 }
