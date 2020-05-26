@@ -68,9 +68,9 @@ export const HoverAndTap = () => {
 <motion.div 
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
-  whileHover={{ rotate: 90, scale: 1.1 }} 
-  whileTap={{ borderRadius: '100%' }}
-  transition={{ duration: .5 }}
+  whileHover={{ rotate: 90, scale: 1.5 }} 
+  whileTap={{ borderRadius: '100%', scale: .8 }}
+  transition={{ duration: .3 }}
 />`;
 
   return (
@@ -180,12 +180,8 @@ export const Scroll = () => {
 
   const code = `
 () => {
-  const { scrollYProgress, scrollY } = useViewportScroll();
-  const width = useTransform(
-    scrollYProgress, 
-    [0, 1], 
-    ["0px", "100%"]
-  );
+  const { scrollYProgress } = useViewportScroll();
+  const width = useTransform(scrollYProgress, [0, 1], ["0px", "100%"]);
 
   return (
     <>
@@ -215,6 +211,17 @@ export const Modal = () => {
 () => {
   const [open, setOpen] = React.useState(false);
 
+  const backdropVariants = {
+    hidden: { opacity: 0, transition: { when: 'afterChildren' } },
+    visible: { opacity: 1, transition: { when: 'beforeChildren' } },
+  };
+
+  const modalVariants = {
+    hidden: { opacity: 0, y: -200 },
+    visible: { opacity: 1, y: 0 },
+    leave: { y: 200, opacity: 0 }
+  }
+
   return (
     <>
       <motion.div onClick={() => setOpen(true)} />
@@ -223,16 +230,15 @@ export const Modal = () => {
           <>
             <motion.div 
               className="backdrop" 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              variants={backdropVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
             >
               <motion.div 
                 className="modal"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
-                transition={{ delay: .3 }}
+                variants={modalVariants}
+                exit="leave"
               >
                 <span onClick={() => setOpen(false)}>&times;</span>
               </motion.div>
