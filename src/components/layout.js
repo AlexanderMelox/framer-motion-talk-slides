@@ -1,10 +1,10 @@
-import React from "react";
-import { Global, css } from "@emotion/core";
-import { normalize } from "polished";
-import { motion, useViewportScroll } from "framer-motion";
-import { Header, Container, Link } from "./elements";
-import Footer from "./footer";
-import SEO from "./seo";
+import React from 'react'
+import { Global, css } from '@emotion/core'
+import { normalize } from 'polished'
+import { motion, useViewportScroll } from 'framer-motion'
+import { Header, Container, Link } from './elements'
+import Footer from './footer'
+import SEO from './seo'
 
 const globalStyles = css`
   *,
@@ -49,6 +49,7 @@ const globalStyles = css`
   }
 
   code {
+    display: block;
     font-family: 'Dank Mono', monospace;
     padding: 2rem !important;
     border-radius: var(--radius);
@@ -114,10 +115,10 @@ const globalStyles = css`
     border: none;
     outline: none;
   }
-`;
+`
 
 const Layout = ({ children }) => {
-  const { scrollY } = useViewportScroll();
+  const { scrollY } = useViewportScroll()
 
   return (
     <>
@@ -126,7 +127,7 @@ const Layout = ({ children }) => {
 
       <Header
         style={{ opacity: scrollY > 1 ? 0 : 0 }}
-        initial={{ opacity: 0, y: "-100%" }}
+        initial={{ opacity: 0, y: '-100%' }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
@@ -135,7 +136,7 @@ const Layout = ({ children }) => {
             initial={{ opacity: 0, y: -100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            whileHover={{ x: "100%" }}
+            whileHover={{ x: '100%' }}
           >
             <span role="img">🚄</span> Framer motion
           </motion.h1>
@@ -153,12 +154,12 @@ const Layout = ({ children }) => {
           Made with <span role="img">❤️</span> with GatsbyJS
         </p>
         <span>
-          Developed by{" "}
+          Developed by{' '}
           <Link href="https://alexandermelox.netlify.com">Alexander Melo</Link>
         </span>
       </Footer>
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
