@@ -12,7 +12,7 @@
     "carbon-components-react": "^7.12.0",
     "carbon-icons": "^7.0.7",
     "framer-motion": "^1.11.0",
-    "gatsby": "^2.21.22",
+    "gatsby": "^4.25.7",
     "gatsby-plugin-emotion": "^4.3.2",
     "gatsby-plugin-mdx": "^1.2.11",
     "gatsby-plugin-react-helmet": "^3.3.1",
